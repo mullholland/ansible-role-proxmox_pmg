@@ -1,0 +1,12 @@
+---
+- name: Prepare
+  hosts: all
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: Copy PVE Repository Template
+      ansible.builtin.copy:
+        content: |
+            deb https://enterprise.proxmox.com/debian/pmg {{ ansible_distribution_release }} pmg-enterprise
+        dest: /etc/apt/sources.list.d/pmg-enterprise.list
