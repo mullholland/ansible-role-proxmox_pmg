@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Configure Proxmox Mailgateway Repositories
+  homepage: https://mullholland.net
+  topics: cloud, system, ansible, molecule, tox, playbook
