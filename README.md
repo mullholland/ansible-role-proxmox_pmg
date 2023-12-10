@@ -1,11 +1,10 @@
-# [proxmox_pmg](#proxmox_pmg)
+# [Ansible role proxmox_pmg](#proxmox_pmg)
 
 Configure Proxmox Mailgateway Repositories
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/mullholland/ansible-role-proxmox_pmg/workflows/Ansible%20Molecule/badge.svg)](https://github.com/mullholland/ansible-role-proxmox_pmg/actions)|[![gitlab](https://gitlab.com/opensourceunicorn/ansible-role-proxmox_pmg/badges/master/pipeline.svg)](https://gitlab.com/opensourceunicorn/ansible-role-proxmox_pmg)|[![quality](https://img.shields.io/ansible/quality/60153)](https://galaxy.ansible.com/mullholland/proxmox_pmg)|[![downloads](https://img.shields.io/ansible/role/d/60153)](https://galaxy.ansible.com/mullholland/proxmox_pmg)|[![Version](https://img.shields.io/github/release/mullholland/ansible-role-proxmox_pmg.svg)](https://github.com/mullholland/ansible-role-proxmox_pmg/releases/)|
-
+|GitHub|Downloads|Version|
+|------|---------|-------|
+|[![github](https://github.com/mullholland/ansible-role-proxmox_pmg/actions/workflows/molecule.yml/badge.svg)](https://github.com/mullholland/ansible-role-proxmox_pmg/actions/workflows/molecule.yml)|[![downloads](https://img.shields.io/ansible/role/d/mullholland/proxmox_pmg)](https://galaxy.ansible.com/mullholland/proxmox_pmg)|[![Version](https://img.shields.io/github/release/mullholland/ansible-role-proxmox_pmg.svg)](https://github.com/mullholland/ansible-role-proxmox_pmg/releases/)|
 ## [Example Playbook](#example-playbook)
 
 This example is taken from [`molecule/default/converge.yml`](https://github.com/mullholland/ansible-role-proxmox_pmg/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
@@ -38,6 +37,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
             deb https://enterprise.proxmox.com/debian/pmg {{ ansible_distribution_release }} pmg-enterprise
         dest: /etc/apt/sources.list.d/pmg-enterprise.list
 ```
+
 
 
 ## [Role Variables](#role-variables)
@@ -83,7 +83,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/m
 
 |container|tags|
 |---------|----|
-|[Debian](https://hub.docker.com/repository/docker/mullholland/docker-debian-systemd/general)|all|
+|[Debian](https://hub.docker.com/r/mullholland/debian)|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
@@ -91,7 +91,7 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/mullholland/ansible-role-proxmox_pmg/issues)
+If you find issues, please register them in [GitHub](https://github.com/mullholland/ansible-role-proxmox_pmg/issues).
 
 ## [License](#license)
 
@@ -100,5 +100,3 @@ If you find issues, please register them in [GitHub](https://github.com/mullholl
 ## [Author Information](#author-information)
 
 [Mullholland](https://mullholland.net)
-
-Please consider [sponsoring me](https://github.com/sponsors/mullholland).
