@@ -15,10 +15,8 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   hosts: all
   become: true
   gather_facts: true
-  # vars:
-  #   example_var: "value"
   roles:
-    - role: "mullholland.proxmox_pmg"
+    - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}"
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/mullholland/ansible-role-proxmox_pmg/blob/master/molecule/default/prepare.yml):
@@ -37,7 +35,6 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
             deb https://enterprise.proxmox.com/debian/pmg {{ ansible_distribution_release }} pmg-enterprise
         dest: /etc/apt/sources.list.d/pmg-enterprise.list
 ```
-
 
 
 ## [Role Variables](#role-variables)
@@ -74,9 +71,6 @@ proxmox_pmg_enable_no_subscription_repository: true
 
 This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://mullholland.net) for further information.
 
-Here is an overview of related roles:
-![dependencies](https://raw.githubusercontent.com/mullholland/ansible-role-proxmox_pmg/png/requirements.png "Dependencies")
-
 ## [Compatibility](#compatibility)
 
 This role has been tested on these [container images](https://hub.docker.com/u/mullholland):
@@ -87,9 +81,9 @@ This role has been tested on these [container images](https://hub.docker.com/u/m
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
+- The version before the previous version.
 - The previous version.
 - The current version.
-- The development version.
 
 If you find issues, please register them in [GitHub](https://github.com/mullholland/ansible-role-proxmox_pmg/issues).
 

@@ -1,8 +1,16 @@
 ---
+- name: Ensure /etc/apt/keyrings exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+
 - name: Add PMG Apt signing key
-  ansible.builtin.apt_key:
+  ansible.builtin.get_url:
     url: "{{ proxmox_pmg_repository_key }}"
-    state: present
+    dest: "{{ proxmox_pmg_repository_keyring }}"
+    mode: "0644"
+    force: false
 
 - name: Update sources.list
   ansible.builtin.template:

@@ -5,4 +5,4 @@
 repository:
   description: Configure Proxmox Mailgateway Repositories
   homepage: https://mullholland.net
-  topics: cloud, system, ansible, molecule, tox, playbook
+  topics: cloud, system, ansible, molecule, playbook
