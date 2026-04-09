@@ -28,12 +28,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   become: true
   gather_facts: true
 
-  tasks:
-    - name: Copy PVE Repository Template
-      ansible.builtin.copy:
-        content: |
-            deb https://enterprise.proxmox.com/debian/pmg {{ ansible_distribution_release }} pmg-enterprise
-        dest: /etc/apt/sources.list.d/pmg-enterprise.list
+  roles:
+    - role: mullholland.proxmox_pve
 ```
 
 
@@ -47,7 +43,8 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # Older versions may work
 
 # https://pmg.proxmox.com/docs/installation.html#secureapt
-proxmox_pmg_repository_key: "https://enterprise.proxmox.com/debian/proxmox-release-{{ ansible_distribution_release }}.gpg"
+proxmox_pmg_repository_key: "https://enterprise.proxmox.com/debian/proxmox-release-{{ ansible_facts['distribution_release'] }}.gpg"
+proxmox_pmg_repository_keyring: "/etc/apt/keyrings/proxmox-release-{{ ansible_facts['distribution_release'] }}.gpg"
 
 # manages the Proxmox /etc/apt/sources.list
 proxmox_pmg_enable_default_repository: true
