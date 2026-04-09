@@ -63,6 +63,13 @@ proxmox_pmg_enable_no_subscription_repository: true
 
 - pip packages listed in [requirements.txt](https://github.com/mullholland/ansible-role-proxmox_pmg/blob/master/requirements.txt).
 
+## [State of used roles](#state-of-used-roles)
+
+The following roles are used to prepare a system. You can prepare your system in another way.
+
+| Requirement | GitHub | GitLab |
+|-------------|--------|--------|
+|[mullholland.proxmox_pve](https://galaxy.ansible.com/mullholland/proxmox_pve)|[![Build Status GitHub](https://github.com/mullholland/ansible-role-proxmox_pve/workflows/Ansible%20Molecule/badge.svg)](https://github.com/mullholland/ansible-role-proxmox_pve/actions)|[![Build Status GitLab](https://gitlab.com/mullholland-github-mirror/ansible-role-proxmox_pve/badges/master/pipeline.svg)](https://gitlab.com/mullholland-github-mirror/ansible-role-proxmox_pve)|
 
 ## [Context](#context)
 
