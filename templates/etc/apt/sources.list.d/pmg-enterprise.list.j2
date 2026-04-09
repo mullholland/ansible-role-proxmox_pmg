@@ -1,7 +1,0 @@
-# PMG Enterprise Subscription Repository
-
-{% if proxmox_pmg_enable_enterprise_repository %}
-deb [signed-by={{ proxmox_pmg_repository_keyring }}] https://enterprise.proxmox.com/debian/pmg {{ ansible_facts["distribution_release"] }} pmg-enterprise
-{% else %}
-#deb [signed-by={{ proxmox_pmg_repository_keyring }}] https://enterprise.proxmox.com/debian/pmg {{ ansible_facts["distribution_release"] }} pmg-enterprise
-{% endif %}

@@ -20,22 +20,13 @@
       register: verify_apt_signing_key_status
       failed_when: not verify_apt_signing_key_status.stat.exists
 
-    - name: verify if sources.list
-      ansible.builtin.lineinfile:
-        name: '/etc/apt/sources.list'
-        line: 'deb http://ftp.debian.org/debian {{ ansible_facts["distribution_release"] }} main contrib'
-        state: present
-      check_mode: true
-      register: verify_repository_status
-      failed_when: (verify_repository_status is changed) or (verify_repository_status is failed)
-
     - name: Verify pmg-enterprise.list is absent (enterprise disabled by default)
       ansible.builtin.stat:
         path: '/etc/apt/sources.list.d/pmg-enterprise.list'
       register: verify_enterprise_repository_status
       failed_when: verify_enterprise_repository_status.stat.exists
 
-    - name: verify if pmg-no-subscription.list exists
+    - name: Verify if pmg-no-subscription.list exists
       ansible.builtin.lineinfile:
         name: '/etc/apt/sources.list.d/pmg-no-subscription.list'
         line: 'deb [signed-by=/etc/apt/keyrings/proxmox-release-{{ ansible_facts["distribution_release"] }}.gpg] http://download.proxmox.com/debian/pmg {{ ansible_facts["distribution_release"] }} pmg-no-subscription'

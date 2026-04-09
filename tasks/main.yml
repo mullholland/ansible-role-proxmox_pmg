@@ -12,38 +12,24 @@
     mode: "0644"
     force: false
 
-- name: Update sources.list
-  ansible.builtin.template:
-    src: "etc/apt/sources.list.j2"
-    dest: "/etc/apt/sources.list"
-    owner: "root"
-    group: "root"
-    mode: '0644'
-  when: proxmox_pmg_enable_default_repository
-  register: proxmox_pmg_repository_sources_list
-
-- name: Update pmg-enterprise.list
-  ansible.builtin.template:
-    src: "etc/apt/sources.list.d/pmg-enterprise.list.j2"
-    dest: "/etc/apt/sources.list.d/pmg-enterprise.list"
-    owner: "root"
-    group: "root"
-    mode: '0644'
+- name: Configure pmg-enterprise repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by={{ proxmox_pmg_repository_keyring }}] https://enterprise.proxmox.com/debian/pmg {{ ansible_facts['distribution_release'] }} pmg-enterprise"
+    state: "{{ proxmox_pmg_enable_enterprise_repository | bool | ternary('present', 'absent') }}"
+    filename: pmg-enterprise
   register: proxmox_pmg_repository_enterprise_list
 
-- name: Update pmg-no-subscription.list
-  ansible.builtin.template:
-    src: "etc/apt/sources.list.d/pmg-no-subscription.list.j2"
-    dest: "/etc/apt/sources.list.d/pmg-no-subscription.list"
-    owner: "root"
-    group: "root"
-    mode: '0644'
+- name: Configure pmg-no-subscription repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by={{ proxmox_pmg_repository_keyring }}] http://download.proxmox.com/debian/pmg {{ ansible_facts['distribution_release'] }} pmg-no-subscription"
+    state: "{{ proxmox_pmg_enable_no_subscription_repository | bool | ternary('present', 'absent') }}"
+    filename: pmg-no-subscription
   register: proxmox_pmg_repository_no_subscription_list
 
 - name: Update repository cache
   ansible.builtin.apt:
     update_cache: true
-  when: proxmox_pmg_repository_sources_list.changed or
+  when:
     proxmox_pmg_repository_enterprise_list.changed or
     proxmox_pmg_repository_no_subscription_list.changed
   # Data should be refreshed immediatly for other roles which depend on them
